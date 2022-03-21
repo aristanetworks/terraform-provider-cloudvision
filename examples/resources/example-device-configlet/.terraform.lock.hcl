@@ -4,6 +4,6 @@
 provider "arista.com/dev/cvprovider" {
   version = "0.2.0"
   hashes = [
-    "h1:18gn9DRRrjfKaJ3dX9XvhbZJ6QTyHGBj8nqwGAoY/wk=",
+    "h1:3xWSpgXB5fQtXkZydOXxnnbiDy6UIIxI2KrrFDpBP4o=",
   ]
 }
