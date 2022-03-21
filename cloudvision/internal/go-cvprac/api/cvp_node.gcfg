@@ -1,0 +1,8 @@
+#
+# CVP node config file. This file is to adhere to git-config based formating.
+# See: https://git-scm.com/docs/git-config#_syntax
+#
+#[node "cvptest"]
+[node "10.81.110.115"]
+username = cvpadmin
+password = cvp123
