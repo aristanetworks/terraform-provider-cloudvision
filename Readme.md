@@ -1,4 +1,4 @@
-Terraform Provider Cloudvision
+Terraform Provider Cloudvision Portal(CVP)
 =========================
 
 
@@ -8,6 +8,7 @@ Terraform Provider Cloudvision
 
 This is a terraform provider that will use Terraform to drive cloudvision resources.
 
+## Creating a token for Cloud vision.
 Before proceeding please leverage the cloudvision service token.
 
 To receive a service token please follow [this guide](https://www.arista.com/en/cg-cv/cv-service-accounts)
@@ -28,6 +29,19 @@ The alternative and suggest method is to use a environmental variable.  For exam
 ```
 export TF_VAR_cvptoken=123456789abcdefghi
 ```
+
+## Building the provider
+
+Linux amd-64
+```
+make linux
+```
+
+Darwin amd-64
+```
+make darwin
+```
+
 
 ## Requirements
 
