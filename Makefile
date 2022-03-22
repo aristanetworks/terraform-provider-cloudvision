@@ -5,6 +5,7 @@ NAME=cloudvision
 BINARY=terraform-provider-${NAME}
 VERSION=0.1
 OS_ARCH=linux_amd64
+GOFMT_FILES?=$$(find . -name '*.go')
 
 default: install
 
@@ -39,3 +40,15 @@ test:
 
 testacc:
 	TF_ACC=1 go test $(TEST) -v $(TESTARGS) -timeout 120m
+
+fmt:
+	gofmt -w $(GOFMT_FILES)
+
+vet:
+	@echo "go vet ."
+	@go vet $$(go list ./...) ; if [ $$? -eq 1 ]; then \
+		echo ""; \
+		echo "Vet found suspicious constructs. Please check the reported constructs"; \
+		echo "and fix them if necessary before submitting the code for review."; \
+		exit 1; \
+	fi
