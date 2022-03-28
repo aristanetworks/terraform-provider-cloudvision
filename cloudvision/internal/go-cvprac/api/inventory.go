@@ -172,7 +172,7 @@ func (c CvpRestAPI) GetInventory() ([]NetElement, error) {
 		"provisioned": {"true"},
 	}
 
-	resp, err := c.client.Get("/web/inventory/devices", query)
+	resp, err := c.client.Get("/cvpservice/inventory/devices", query)
 	if err != nil {
 		return nil, errors.Errorf("GetInventory: %s", err)
 	}
@@ -198,7 +198,7 @@ func (c CvpRestAPI) GetInventoryConfiguration(
 		"netElementId": {macAddress},
 	}
 
-	resp, err := c.client.Get("/web/inventory/getInventoryConfiguration.do", query)
+	resp, err := c.client.Get("/cvpservice/inventory/getInventoryConfiguration.do", query)
 	if err != nil {
 		return nil, errors.Errorf("GetInventoryConfiguration: %s", err)
 	}
@@ -335,7 +335,7 @@ func (c CvpRestAPI) GetContainer(name string) ([]Container, error) {
 		}
 	}
 
-	resp, err := c.client.Get("/web/inventory/containers", query)
+	resp, err := c.client.Get("/cvpservice/inventory/containers", query)
 	if err != nil {
 		return nil, errors.Errorf("GetContainer: %s", err)
 	}
@@ -392,7 +392,7 @@ func (c CvpRestAPI) GetContainerInfoByID(id string) (*ContainerInfo, error) {
 		ErrorResponse
 	}{}
 
-	resp, err := c.client.Get("/web/provisioning/getContainerInfoById.do", query)
+	resp, err := c.client.Get("/cvpservice/provisioning/getContainerInfoById.do", query)
 	if err != nil {
 		return nil, errors.Errorf("GetContainerInfoByID: %s", err)
 	}
@@ -409,7 +409,7 @@ func (c CvpRestAPI) GetContainerInfoByID(id string) (*ContainerInfo, error) {
 
 // GetNonConnectedDeviceCount returns number of devices not connected
 func (c CvpRestAPI) GetNonConnectedDeviceCount() (int, error) {
-	resp, err := c.client.Get("/web/inventory/add/getNonConnectedDeviceCount.do", nil)
+	resp, err := c.client.Get("/cvpservice/inventory/add/getNonConnectedDeviceCount.do", nil)
 	if err != nil {
 		return -1, errors.Errorf("GetNonConnectedDeviceCount: %s", err)
 	}
@@ -434,7 +434,7 @@ func (c CvpRestAPI) GetNonConnectedDeviceCount() (int, error) {
 func (c CvpRestAPI) SaveInventory() (*SaveInventoryData, error) {
 	var info SaveInventoryResp
 
-	resp, err := c.client.Post("/web/inventory/v2/saveInventory.do", nil, []string{})
+	resp, err := c.client.Post("/cvpservice/inventory/v2/saveInventory.do", nil, []string{})
 	if err != nil {
 		return nil, errors.Errorf("SaveInventory: %s", err)
 	}
@@ -475,7 +475,7 @@ func (c CvpRestAPI) AddToInventory(deviceIPAddress, parentContainerName,
 		},
 	}
 
-	_, err := c.client.Post("/web/inventory/add/addToInventory.do", urlParams, data)
+	_, err := c.client.Post("/cvpservice/inventory/add/addToInventory.do", urlParams, data)
 	return errors.Wrapf(err, "AddToInventor:")
 }
 
@@ -514,6 +514,6 @@ func (c CvpRestAPI) DeleteDevicesBySerial(serialNumbers []string) error {
 		Data: serialNumbers,
 	}
 
-	_, err := c.client.Delete("/web/inventory/devices", nil, data)
+	_, err := c.client.Delete("/cvpservice/inventory/devices", nil, data)
 	return errors.Wrapf(err, "DeleteDevicesBySerial:")
 }
