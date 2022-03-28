@@ -1,13 +1,13 @@
 terraform {
   required_providers {
     cvprovider = {
-      source = "arista.com/dev/cvprovider"
+      source = "arista.com/dev/cloudvision"
     }
   }
 }
 
 provider "cvprovider" {
-    cvp = "10.90.226.175"
+    cvp = "www.cv-staging.corp.arista.io"
     token = "${var.cvptoken}"
     port = 443
 }
