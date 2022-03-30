@@ -1,4 +1,5 @@
-TEST?=$$(go list ./... | grep -v 'vendor')
+#TEST?=$$(go list ./... | grep -v 'vendor')
+TEST=./cloudvision
 HOSTNAME=arista.com
 NAMESPACE=dev
 NAME=cloudvision
@@ -35,8 +36,7 @@ darwin: build
 	mv ${BINARY} ~/.terraform.d/plugins/${HOSTNAME}/${NAMESPACE}/${NAME}/${VERSION}/darwin_amd64
 
 test:
-	GOPROXY="off" go test -count=1 -v ./...
-	GOPROXY="off" go vet ./...
+	go test $(TEST) -timeout=30s -parallel=4
 
 testacc:
 	TF_ACC=1 go test $(TEST) -v $(TESTARGS) -timeout 120m
