@@ -105,11 +105,10 @@ func onboard_cvinvntoryUpdate(d *schema.ResourceData, m interface{}) error {
 func onboard_cvinvntoryDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*client.CvpClient)
 
-	DecomDev, err := c.API.DecomDevice(d.Get("serial").(string))
+	_, err := c.API.DecomDevice(d.Get("serial").(string))
 	if err != nil {
 		return err
 	}
-	_ = DecomDev
 
 	d.SetId("")
 
