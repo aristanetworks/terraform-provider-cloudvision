@@ -2,7 +2,7 @@ Terraform Provider Cloudvision Portal(CVP)
 =========================
 
 
-![Alt text](docs/images/overall.jpg?raw=true "Overall")
+![Alt text](images/overall.jpg?raw=true "Overall")
 
 ## Description
 
