@@ -101,7 +101,7 @@ func device_cv_containerCreate(d *schema.ResourceData, m interface{}) error {
 
 		gettask, err := c.API.GetTaskByID(d.Get("device_containertaskid").(int))
 		if err != nil {
-			return resource.NonRetryableError(fmt.Errorf("Error Getting the taskID", err))
+			return resource.NonRetryableError(fmt.Errorf("Error Getting the taskID%v\n", err))
 		}
 		log.Print(gettask)
 

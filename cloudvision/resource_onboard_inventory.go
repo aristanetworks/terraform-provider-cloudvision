@@ -72,10 +72,10 @@ func onboard_cvinvntoryCreate(d *schema.ResourceData, m interface{}) error {
 	return resource.Retry(d.Timeout(schema.TimeoutCreate)-time.Minute, func() *resource.RetryError {
 		statusdev, err := c.API.OnboardStatus(d.Get("requestid").(string))
 		if err != nil {
-			return resource.NonRetryableError(fmt.Errorf("Error Adding device", err))
+			return resource.NonRetryableError(fmt.Errorf("Error Adding device%v\n", err))
 		}
 		if statusdev != "ONBOARDING_STATUS_SUCCESS" {
-			return resource.RetryableError(fmt.Errorf("Device not ready yet ", statusdev))
+			return resource.RetryableError(fmt.Errorf("Device not ready yet %v\n", statusdev))
 		}
 
 		err = onboard_cvinvntoryRead(d, m)

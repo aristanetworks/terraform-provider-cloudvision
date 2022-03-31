@@ -6,7 +6,6 @@ package cvprovider
 
 import (
 	"fmt"
-	"os"
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
@@ -31,41 +30,45 @@ func TestAcccvprovidercv_configlet(t *testing.T) {
 	})
 }
 
-var configlet string = "logging host 1.2.3.5"
-
 var testResourceInitialConfigletConfig = fmt.Sprintf(`
 provider "cvprovider" {
     cvp = "1.2.3.4"
-    token = %s
+    token = "aaa"
     port = 443
 }
 
 resource cvprovider_cv_configlet "example"{
   configletname = "tf-example-configlet"
-  configletdata = %s
+  configletdata = "logging host 1.2.3.5"
 }
-`, os.Getenv("TF_VAR_token"), configlet)
+`)
 
 var testResourceUpdatedConfigletConfig = fmt.Sprintf(`
 provider "cvprovider" {
     cvp = "1.2.3.4"
-    token = %s
+    token = "aaa"
     port = 443
 }
 
 resource cvprovider_cv_configlet "example"{
   configletname = "tf-example-configlet"
-  configletdata = %s
+  configletdata = "logging host 1.2.3.5"
 }
-`, os.Getenv("TF_VAR_cvptoken"), configlet)
+`) 
 
 func testResourceInitialConfigletonfigCheck(s *terraform.State) error {
 	resourceState := s.Modules[0].Resources["cvprovider_cv_configlet.example"]
 	if resourceState == nil {
 		return fmt.Errorf("cvprovider_cv_configlet.example resource not found")
 	}
+	instanceState := resourceState.Primary
+	if instanceState == nil {
+		return fmt.Errorf("resource has no primary instance")
+	}
+	if got, want := instanceState.Attributes["cvprovider_cv_configlet.configletname"], "tf-example-configlet"; got != want {
+		return fmt.Errorf("cvprovider_cv_configlet.example contains %s; want %s", got, want)
+	}
 	return nil
-
 }
 
 func testAccCheckExampleResourceDestroy(s *terraform.State) error {

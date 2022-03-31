@@ -66,7 +66,7 @@ func configlet_cv_Create(d *schema.ResourceData, m interface{}) error {
 	return resource.Retry(d.Timeout(schema.TimeoutCreate)-time.Minute, func() *resource.RetryError {
 		Checkconfiglet, err := c.API.GetConfigletByName(d.Get("configletname").(string))
 		if err != nil {
-			return resource.NonRetryableError(fmt.Errorf("Error Adding configlet", err))
+			return resource.NonRetryableError(fmt.Errorf("Error Adding configlet%v\n", err))
 		}
 
 		if Checkconfiglet.Name != d.Get("configletname") {

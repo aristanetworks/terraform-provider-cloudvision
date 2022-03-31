@@ -74,7 +74,7 @@ func container_cv_Create(d *schema.ResourceData, m interface{}) error {
 	return resource.Retry(d.Timeout(schema.TimeoutCreate)-time.Minute, func() *resource.RetryError {
 		CheckContainer, err := c.API.GetContainerByName(d.Get("containername").(string))
 		if err != nil {
-			return resource.NonRetryableError(fmt.Errorf("Error Adding container", err))
+			return resource.NonRetryableError(fmt.Errorf("Error Adding container%v\n", err))
 		}
 
 		if CheckContainer.Name != d.Get("containername") {

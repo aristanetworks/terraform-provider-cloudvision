@@ -113,7 +113,7 @@ func device_cv_configletCreate(d *schema.ResourceData, m interface{}) error {
 	resource.Retry(d.Timeout(schema.TimeoutCreate)-time.Minute, func() *resource.RetryError {
 		CheckConfiglet, err := c.API.GetConfigletByName(baseconfig_configlet_name)
 		if err != nil {
-			return resource.NonRetryableError(fmt.Errorf("Error cannot find Configlet", err))
+			return resource.NonRetryableError(fmt.Errorf("Error cannot find Configlet%v\n", err))
 		}
 		if CheckConfiglet.Name == baseconfig_configlet_name {
 			d.Set("device_configlet_base_key", CheckConfiglet.Key)
@@ -157,7 +157,7 @@ func device_cv_configletCreate(d *schema.ResourceData, m interface{}) error {
 		_ = c.API.ExecuteTask(d.Get("device_configlettaskid").(int))
 		gettask, err := c.API.GetTaskByID(d.Get("device_configlettaskid").(int))
 		if err != nil {
-			return resource.NonRetryableError(fmt.Errorf("Error Getting the taskID", err))
+			return resource.NonRetryableError(fmt.Errorf("Error Getting the taskID%v\n", err))
 		}
 
 		if gettask.TaskStatus != "COMPLETED" {
@@ -207,7 +207,7 @@ func device_cv_configletCreate(d *schema.ResourceData, m interface{}) error {
 
 			gettask, err := c.API.GetTaskByID(d.Get("device_add_configlettaskid").(int))
 			if err != nil {
-				return resource.NonRetryableError(fmt.Errorf("Error Getting the taskID", err))
+				return resource.NonRetryableError(fmt.Errorf("Error Getting the taskID%v\n", err))
 			}
 			log.Print(gettask)
 
@@ -260,7 +260,7 @@ func device_cv_configletUpdate(d *schema.ResourceData, m interface{}) error {
 
 		gettask, err := c.API.GetTaskByID(d.Get("device_configlettaskid").(int))
 		if err != nil {
-			return resource.NonRetryableError(fmt.Errorf("Error Getting the taskID", err))
+			return resource.NonRetryableError(fmt.Errorf("Error Getting the taskID%v\n", err))
 		}
 		log.Print(gettask)
 
