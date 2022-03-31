@@ -42,7 +42,7 @@ To receive a service token please follow [this guide](https://www.arista.com/en/
 
 Once the token is issued it will need to be either referenced within a var as the following.
 
-```
+```terraform
 provider "cvprovider" {
     cvp = "10.90.226.175"
     cvptoken = "locationoftoken.txt"
