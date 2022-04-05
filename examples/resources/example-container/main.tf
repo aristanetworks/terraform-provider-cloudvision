@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     cvprovider = {
-      source = "arista.com/dev/cloudvision"
+      source = "aristanetworks/cloudvision"
     }
   }
 }

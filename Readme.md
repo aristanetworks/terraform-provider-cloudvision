@@ -15,6 +15,8 @@ The provider gives the ability to
 - Move Arista EOS devices to their proper containers.
 - Attach additional configlets to each device.
 
+The provider itself can be found on the official Terraform registery as [cloudvision](https://registry.terraform.io/providers/aristanetworks/cloudvision/latest)
+
 The provider uses [go-cvprac](https://github.com/aristanetworks/go-cvprac) which provides connectivy to either the Cloudvision on prem or Cloudvision as a service([cvaas](https://www.arista.com/en/cg-cv/cv-cloudvision-as-a-service))
 
 ## Creating a token for Cloud vision.
@@ -39,7 +41,7 @@ The alternative and suggested method is to use a environmental variable.  For ex
 export TF_VAR_cvptoken=123456789abcdefghi
 ```
 
-## Building the provider
+## Building the provider for testing
 
 Linux amd-64
 ```
@@ -53,11 +55,32 @@ make darwin
 
 ## Examples
 
-#### Demo on a linux device.
+#### Demo Data sources
+```terraform
+terraform {
+  required_providers {
+    cvprovider = {
+      source = "aristanetworks/cloudvision"
+    }
+  }
+}
 
+provider "cvprovider" {
+    cvp = "cloudvisionservernameorip"
+    token = "${var.cvptoken}"
+    port = 443
+}
+
+data "cvprovider_data_inventory" "all" {
+}
+
+
+output "test" {
+   value = [for k in data.cvprovider_data_inventory.all.inventory : k.hostname]
+}
 ```
-make linux
-```
+
+
 All demos can be found within the examples/ directory.
 
 ```

@@ -22,7 +22,7 @@ The provider gives the ability to
 terraform {
   required_providers {
     cvprovider = {
-      source = "arista.com/dev/cloudvision"
+      source = "aristanetworks/cloudvision"
     }
   }
 }
@@ -69,7 +69,7 @@ export TF_VAR_cvptoken=123456789abcdefghi
 terraform {
   required_providers {
     cvprovider = {
-      source = "arista.com/dev/cloudvision"
+      source = "aristanetworks/cloudvision"
     }
   }
 }

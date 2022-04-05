@@ -31,3 +31,8 @@ shasum -a 256 *.zip > ${BINARY}_${VERSION}_SHA256SUMS
 
 #Get the key
 gpg --detach-sign ${BINARY}_${VERSION}_SHA256SUMS
+
+#Update the docs
+cd ..
+go get github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs
+go run github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs

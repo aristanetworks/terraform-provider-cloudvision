@@ -11,7 +11,7 @@ description: |-
 terraform {
   required_providers {
     cvprovider = {
-      source = "arista.com/dev/cloudvision"
+      source = "aristanetworks/cloudvision"
     }
   }
 }
@@ -103,8 +103,3 @@ mark the device as out of compliance.  You may not want to push config to this d
 It is assumed that the configlets already exist within cloudvision.  Within the example "syslogs" and "vlans" already exist.
 
 The reason for depends_on is so we can move the device to the container and then apply config immediately there afterwards.
-
-
-
-
-

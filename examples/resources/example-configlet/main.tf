@@ -1,11 +1,10 @@
 terraform {
   required_providers {
     cvprovider = {
-      source = "arista.com/dev/cloudvision"
+      source = "aristanetworks/cloudvision"
     }
   }
 }
-
 provider "cvprovider" {
     cvp = "1.2.3.4"
     token = "${var.cvptoken}"
