@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# This script should be used to build or build and publish provider-cloudvision
+# This will output the build within the bin folder.
+# run with a ./publish_terraform
+
+BINARY=terraform-provider-cloudvision
+VERSION=0.1.2
+#Create the directory if it is not created.
+mkdir -p bin
+cd bin
+cd ..
+
+#Build the binaries for linux and darwin
+GOOS=darwin GOARCH=amd64 go build -o ./bin/${BINARY}_v${VERSION}_darwin_amd64
+GOOS=linux GOARCH=amd64 go build -o ./bin/${BINARY}_v${VERSION}_linux_amd64
+
+#Zip it up
+cd bin
+zip ${BINARY}_${VERSION}_darwin_amd64.zip ${BINARY}_v${VERSION}_darwin_amd64
+zip ${BINARY}_${VERSION}_linux_amd64.zip ${BINARY}_v${VERSION}_linux_amd64
+
+#Remove old binaries
+rm ${BINARY}_v${VERSION}_darwin_amd64 && rm ${BINARY}_v${VERSION}_linux_amd64
+
+#CP the registery json file
+cp ../terraform-registry-manifest.json terraform-registry-cloudvision_${VERSION}_manifest.json
+
+#shasum
+shasum -a 256 *.zip > ${BINARY}_${VERSION}_SHA256SUMS
+
+#Get the key
+gpg --detach-sign ${BINARY}_${VERSION}_SHA256SUMS
