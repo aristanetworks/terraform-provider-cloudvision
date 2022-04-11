@@ -22,6 +22,7 @@ description: |-
 
 ### Optional
 
+- `container_configlets` (List of String)
 - `containerkey` (String)
 - `id` (String) The ID of this resource.
 - `parentcontainerkey` (String)

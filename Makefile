@@ -4,7 +4,7 @@ HOSTNAME=arista.com
 NAMESPACE=dev
 NAME=cloudvision
 BINARY=terraform-provider-${NAME}
-VERSION=0.1
+VERSION=0.1.3
 OS_ARCH=linux_amd64
 GOFMT_FILES?=$$(find . -name '*.go')
 
