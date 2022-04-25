@@ -11,6 +11,9 @@ mkdir -p bin
 cd bin
 cd ..
 
+#CP the registery json file
+cp ./terraform-registry-manifest.json ./bin/terraform-registry-cloudvision_${VERSION}_manifest.json
+
 #Build the binaries for linux and darwin
 GOOS=darwin GOARCH=amd64 go build -o ./bin/${BINARY}_v${VERSION}_darwin_amd64
 GOOS=linux GOARCH=amd64 go build -o ./bin/${BINARY}_v${VERSION}_linux_amd64
@@ -22,9 +25,6 @@ zip ${BINARY}_${VERSION}_linux_amd64.zip ${BINARY}_v${VERSION}_linux_amd64
 
 #Remove old binaries
 rm ${BINARY}_v${VERSION}_darwin_amd64 && rm ${BINARY}_v${VERSION}_linux_amd64
-
-#CP the registery json file
-cp ../terraform-registry-manifest.json terraform-registry-cloudvision_${VERSION}_manifest.json
 
 #shasum
 shasum -a 256 *.zip > ${BINARY}_${VERSION}_SHA256SUMS
