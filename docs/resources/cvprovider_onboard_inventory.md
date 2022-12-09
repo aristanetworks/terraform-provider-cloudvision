@@ -24,10 +24,13 @@ description: |-
 ### Optional
 
 - `decomid` (String)
-- `id` (String) The ID of this resource.
 - `requestid` (String)
 - `serial` (String)
 - `timeouts` (Block, Optional) (see [below for nested schema](#nestedblock--timeouts))
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--timeouts"></a>
 ### Nested Schema for `timeouts`

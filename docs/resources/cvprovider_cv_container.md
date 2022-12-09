@@ -24,9 +24,12 @@ description: |-
 
 - `container_configlets` (List of String)
 - `containerkey` (String)
-- `id` (String) The ID of this resource.
 - `parentcontainerkey` (String)
 - `timeouts` (Block, Optional) (see [below for nested schema](#nestedblock--timeouts))
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--timeouts"></a>
 ### Nested Schema for `timeouts`
