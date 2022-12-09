@@ -26,8 +26,11 @@ description: |-
 - `device_fqdn` (String)
 - `device_taskstatus` (String)
 - `device_taskstatus2` (String)
-- `id` (String) The ID of this resource.
 - `timeouts` (Block, Optional) (see [below for nested schema](#nestedblock--timeouts))
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--timeouts"></a>
 ### Nested Schema for `timeouts`
