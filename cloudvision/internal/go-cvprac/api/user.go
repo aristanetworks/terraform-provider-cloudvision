@@ -72,7 +72,7 @@ func (c CvpRestAPI) GetAllUsers(start, end int) (*UserList, error) {
 		"endIndex":   {strconv.Itoa(end)},
 	}
 
-	resp, err := c.client.Get("/user/getUsers.do", query)
+	resp, err := c.client.Get("/cvpservice/user/getUsers.do", query)
 	if err != nil {
 		return nil, errors.Errorf("GetAllUsers: %s", err)
 	}
@@ -97,7 +97,7 @@ func (c CvpRestAPI) GetUser(userID string) (*SingleUser, error) {
 
 	query := &url.Values{"userId": {userID}}
 
-	resp, err := c.client.Get("/user/getUser.do", query)
+	resp, err := c.client.Get("/cvpservice/user/getUser.do", query)
 	if err != nil {
 		return nil, errors.Errorf("GetUser: %s", err)
 	}
@@ -117,7 +117,7 @@ func (c CvpRestAPI) AddUser(user *SingleUser) error {
 	if user == nil {
 		return errors.New("AddUser: can not add nil user")
 	}
-	resp, err := c.client.Post("/user/addUser.do", nil, user)
+	resp, err := c.client.Post("/cvpservice/user/addUser.do", nil, user)
 	if err != nil {
 		return errors.Errorf("AddUser: %s", err)
 	}
@@ -143,7 +143,7 @@ func (c CvpRestAPI) DeleteUsers(userIds []string) error {
 	if len(userIds) == 0 {
 		return errors.New("DeleteUsers: no user specified for deletion")
 	}
-	resp, err := c.client.Post("/user/deleteUsers.do", nil, userIds)
+	resp, err := c.client.Post("/cvpservice/user/deleteUsers.do", nil, userIds)
 	if err != nil {
 		return errors.Errorf("DeleteUsers: %s", err)
 	}
@@ -176,7 +176,7 @@ func (c CvpRestAPI) DeleteUsers(userIds []string) error {
 // UpdateUser updates 'user' having userObj
 func (c CvpRestAPI) UpdateUser(user string, userObj *SingleUser) error {
 	param := &url.Values{"userId": {user}}
-	resp, err := c.client.Post("/user/updateUser.do", param, userObj)
+	resp, err := c.client.Post("/cvpservice/user/updateUser.do", param, userObj)
 	if err != nil {
 		return errors.Errorf("UpdateUser: %v", err)
 	}

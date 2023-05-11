@@ -39,6 +39,7 @@ func Provider() *schema.Provider {
 		},
 		DataSourcesMap: map[string]*schema.Resource{
 			"cvprovider_data_inventory": get_inventory(),
+			"cvprovider_data_user":      get_user(),
 		},
 	}
 	c.ConfigureFunc = providerConfigure
