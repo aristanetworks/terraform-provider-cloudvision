@@ -65,7 +65,7 @@ func (c CvpRestAPI) GetAllRoles(start, end int) (*RoleList, error) {
 		"endIndex":   {strconv.Itoa(end)},
 	}
 
-	resp, err := c.client.Get("/role/getRoles.do", query)
+	resp, err := c.client.Get("/cvpservice/role/getRoles.do", query)
 	if err != nil {
 		return nil, errors.Errorf("GetAllRoles: %s", err)
 	}
@@ -90,7 +90,7 @@ func (c CvpRestAPI) GetRoleByID(roleID string) (*SingleRole, error) {
 
 	query := &url.Values{"roleId": {roleID}}
 
-	resp, err := c.client.Get("/role/getRole.do", query)
+	resp, err := c.client.Get("/cvpservice/role/getRole.do", query)
 	if err != nil {
 		return nil, errors.Errorf("GetRoleByID: %s", err)
 	}
@@ -132,7 +132,7 @@ func (c CvpRestAPI) AddRole(role *SingleRole) (*SingleRole, error) {
 		return nil, errors.New("AddRole: can not add nil role")
 	}
 
-	resp, err := c.client.Post("/role/createRole.do", nil, role.RoleData)
+	resp, err := c.client.Post("/cvpservice/role/createRole.do", nil, role.RoleData)
 	if err != nil {
 		return nil, errors.Errorf("AddRole: Error: [%v]", err)
 	}
@@ -159,7 +159,7 @@ func (c CvpRestAPI) DeleteRoles(roleIds []string) error {
 	if len(roleIds) == 0 {
 		return errors.New("DeleteRoles: empty roleId list")
 	}
-	resp, err := c.client.Post("/role/deleteRoles.do", nil, roleIds)
+	resp, err := c.client.Post("/cvpservice/role/deleteRoles.do", nil, roleIds)
 	if err != nil {
 		return errors.Errorf("DeleteRoles: Error: [%v]", err)
 	}
@@ -195,7 +195,7 @@ func (c CvpRestAPI) UpdateRole(role *SingleRole) error {
 	if role == nil {
 		return errors.New("UpdateRole: can not update a nil role")
 	}
-	resp, err := c.client.Post("/role/updateRole.do", nil, role.RoleData)
+	resp, err := c.client.Post("/cvpservice/role/updateRole.do", nil, role.RoleData)
 	if err != nil {
 		return errors.Errorf("UpdateRole: Error: [%v]", err)
 	}
